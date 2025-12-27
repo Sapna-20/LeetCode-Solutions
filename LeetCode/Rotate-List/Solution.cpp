@@ -1,14 +1,36 @@
-[1,2,3,4,5]
-2
-[0,1,2]
-4
-[1]
-1
-[1,2,3]
-10
-[]
-0
-[1,2]
-0
-[1,2]
-2
+class Solution {
+public:
+   ListNode* rotateRight(ListNode* head, int k) {
+    if (!head || !head->next || k == 0)
+        return head;
+
+    // 1. Find length and last node
+    int len = 1;
+    ListNode* tail = head;
+    while (tail->next) {
+        tail = tail->next;
+        len++;
+    }
+
+    // 2. Reduce k
+    k = k % len;
+    if (k == 0)
+        return head;
+
+    // 3. Make circular
+    tail->next = head;
+
+    // 4. Find new tail (len - k - 1 steps)
+    ListNode* newTail = head;
+    for (int i = 1; i < len - k; i++) {
+        newTail = newTail->next;
+    }
+
+    // 5. Break the circle
+    ListNode* newHead = newTail->next;
+    newTail->next = NULL;
+
+    return newHead;
+}
+
+};
