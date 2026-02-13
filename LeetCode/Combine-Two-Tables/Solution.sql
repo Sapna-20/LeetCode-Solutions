@@ -1,10 +1,9 @@
-1# Write your MySQL query statement below
-2SELECT 
-3    p.FirstName,
-4    p.LastName,
-5    a.City,
-6    a.State
-7FROM Person p
-8LEFT JOIN Address a
-9ON p.PersonId = a.PersonId;
-10
+1SELECT 
+2    p.FirstName,
+3    p.LastName,
+4    a.City,
+5    a.State
+6FROM Person AS p
+7LEFT JOIN Address AS a
+8    ON p.PersonId = a.PersonId;
+9
