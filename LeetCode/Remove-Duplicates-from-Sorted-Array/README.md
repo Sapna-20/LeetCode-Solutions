@@ -1,44 +1,110 @@
-# Remove Duplicates from Sorted Array
+# LeetCode 26 – Remove Duplicates from Sorted Array (Easy Explanation)
 
-Can you solve this real interview question? Remove Duplicates from Sorted Array - Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place [https://en.wikipedia.org/wiki/In-place_algorithm] such that each unique element appears only once. The relative order of the elements should be kept the same.
+##  Problem in Simple Words
 
-Consider the number of unique elements in nums to be k . After removing duplicates, return the number of unique elements k.
+A sorted list of numbers is given.
 
-The first k elements of nums should contain the unique numbers in sorted order. The remaining elements beyond index k - 1 can be ignored.
+Some numbers appear more than once.
 
-Custom Judge:
+The task is:
 
-The judge will test your solution with the following code:
+ Remove duplicate numbers  
+ Keep only one copy of each number  
+ Do it inside the same list  
+ Do NOT create a new list  
+ Return how many unique numbers remain  
 
+Example:
 
-int[] nums = [...]; // Input array
-int[] expectedNums = [...]; // The expected answer with correct length
+List: 1, 1, 2  
 
-int k = removeDuplicates(nums); // Calls your implementation
+After removing duplicates:
 
-assert k == expectedNums.length;
-for (int i = 0; i < k; i++) {
-    assert nums[i] == expectedNums[i];
-}
+List becomes: 1, 2  
 
+Return: 2  
 
-If all assertions pass, then your solution will be accepted.
+---
 
- 
+##  How to Think About This Problem
 
-Example 1:
+Think like this:
 
+A class attendance sheet is given.
 
-Input: nums = [1,1,2]
-Output: 2, nums = [1,2,_]
-Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
-It does not matter what you leave beyond the returned k (hence they are underscores).
+Some student names are written more than once.
 
+Only one entry per student is needed.
 
-Example 2:
+But making a new sheet is not allowed.
 
+The same sheet must be cleaned.
 
-Input: nums = [0,0,1,1,1,2,2,3,3,4]
-Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
-Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
-It does not matter what you leave beyond the returned k (hence they are underscores).
+---
+
+##  Simple Thinking Process
+
+### Step 1: Understand
+- The list is already sorted
+- Duplicate numbers are together
+- Extra space is not allowed
+
+### Step 2: Keep Unique Elements
+
+Start from the first number.
+
+Whenever a new number is different from the previous one,
+keep it.
+
+If the number is same as before,
+skip it.
+
+### Step 3: Shift Left
+
+All unique numbers are moved to the front.
+
+At the end,
+only different numbers remain.
+
+---
+
+##  Real Life Examples (Why This Problem Matters)
+
+This concept is used in many systems.
+
+---
+
+###  1. Contact List Cleaning
+
+- Same contact saved many times
+- Only one copy is kept
+
+---
+
+###  2. Database Management
+
+- Duplicate records exist
+- Only unique records are stored
+
+---
+
+###  3. Customer Lists
+
+- Same customer registered multiple times
+- Only one entry is maintained
+
+---
+
+###  4. Log Monitoring
+
+- Same event logged many times
+- One entry is enough
+
+---
+
+###  5. Exam Registration
+
+- Student registered twice
+- Duplicate entry is removed
+
+---
