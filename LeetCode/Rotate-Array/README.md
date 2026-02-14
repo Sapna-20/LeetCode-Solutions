@@ -8,9 +8,9 @@ A number `k` is also given.
 
 The task is:
 
-👉 Move the last `k` elements to the front  
-👉 Shift remaining elements to the right  
-👉 Do it inside the same list  
+ Move the last `k` elements to the front  
+ Shift remaining elements to the right  
+ Do it inside the same list  
 
 Example:
 
@@ -71,9 +71,9 @@ inside the same array.
 
 ---
 
-## 🌍 Real Life Tech Problems Where This Is Used
+##  Real Life Tech Problems Where This Is Used
 
-### 📱 1. Log Rotation Systems
+###  1. Log Rotation Systems
 
 Servers store logs in fixed memory.
 
@@ -86,7 +86,7 @@ Internally, data is rotated.
 
 ---
 
-### 💾 2. Cache Systems
+###  2. Cache Systems
 
 Caches store recent data.
 
