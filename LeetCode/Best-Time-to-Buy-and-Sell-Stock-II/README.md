@@ -1,35 +1,124 @@
-# Best Time to Buy and Sell Stock II
+# LeetCode 122 – Best Time to Buy and Sell Stock II
 
-Can you solve this real interview question? Best Time to Buy and Sell Stock II - You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
+## Problem in Simple Words
 
-On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can sell and buy the stock multiple times on the same day, ensuring you never hold more than one share of the stock.
+A list of numbers is given.
 
-Find and return the maximum profit you can achieve.
+Each number represents the stock price on a particular day.
 
- 
+The order of the list represents time.
 
-Example 1:
+The task is:
 
+- Buy and sell the stock multiple times  
+- Find the maximum total profit  
+- Buying must happen before selling  
+- Only one stock can be held at a time  
 
-Input: prices = [7,1,5,3,6,4]
-Output: 7
-Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
-Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
-Total profit is 4 + 3 = 7.
+This means:
+After selling, buying again is allowed.
 
+Example:
 
-Example 2:
+Prices: 7, 1, 5, 3, 6, 4  
 
+Possible transactions:
 
-Input: prices = [1,2,3,4,5]
-Output: 4
-Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.
-Total profit is 4.
+Buy at 1 → Sell at 5 → Profit = 4  
+Buy at 3 → Sell at 6 → Profit = 3  
 
+Total Profit = 4 + 3 = 7  
 
-Example 3:
+---
 
+## How to Think About This Problem
 
-Input: prices = [7,6,4,3,1]
-Output: 0
-Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.
+This problem is similar to 121, but with one major difference:
+
+Multiple transactions are allowed.
+
+Instead of finding only one best pair,
+every small profit opportunity can be used.
+
+Important idea:
+
+If today’s price is higher than yesterday’s price,
+profit can be taken.
+
+There is no need to wait for a global maximum.
+
+Every upward movement gives profit.
+
+---
+
+## Simple Thinking Process
+
+### Step 1: Understand
+- Prices are given in time order  
+- Multiple buy and sell operations are allowed  
+- Cannot hold more than one stock at a time  
+
+### Step 2: Look for Increases
+
+Move from left to right.
+
+Whenever:
+
+Current price > Previous price  
+
+Profit = Current − Previous  
+
+Add it to total profit.
+
+### Step 3: Continue
+
+Repeat this for the entire list.
+
+All small profits together give maximum total profit.
+
+---
+
+## Real-Life Tech Examples
+
+### 1. Automated Trading Systems
+
+In algorithmic trading platforms:
+
+Systems monitor price changes continuously.
+
+Instead of waiting for one large opportunity,
+they capture multiple small profitable movements.
+
+This strategy increases total gain over time.
+
+The logic used here is similar.
+
+---
+
+### 2. High-Frequency Trading Software
+
+High-frequency trading systems:
+
+Execute many small buy-sell operations in short intervals.
+
+They take advantage of small price differences.
+
+This problem models the simplified version of that behavior.
+
+---
+
+### 3. Cryptocurrency Trading Platforms
+
+Crypto markets fluctuate frequently.
+
+Trading bots often:
+
+- Buy when price rises
+- Sell quickly
+- Repeat multiple times
+
+This maximizes cumulative profit.
+
+The same pattern appears in this problem.
+
+---
