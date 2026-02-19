@@ -1,57 +1,52 @@
 class RandomizedSet {
-private:
-    vector<int> nums;                  // store values
-    unordered_map<int, int> mp;        // value -> index in vector
-
+    
+    vector<int> arr;                 // stores values
+    unordered_map<int,int> pos;      // value -> index
+    
 public:
+    
     RandomizedSet() {
         
     }
     
     bool insert(int val) {
-        // If already exists, return false
-        if (mp.find(val) != mp.end()) {
+        
+        // already present
+        if (pos.count(val)) 
             return false;
-        }
         
-        // Add to vector
-        nums.push_back(val);
+        // add at end
+        arr.push_back(val);
         
-        // Store index
-        mp[val] = nums.size() - 1;
+        // save position
+        pos[val] = arr.size() - 1;
         
         return true;
     }
     
     bool remove(int val) {
-        // If not present, return false
-        if (mp.find(val) == mp.end()) {
+        
+        // not present
+        if (!pos.count(val)) 
             return false;
-        }
         
-        // Get index of element to remove
-        int index = mp[val];
+        int index = pos[val];        // position of val
+        int last = arr.back();       // last element
         
-        // Get last element
-        int lastElement = nums.back();
+        // move last to this position
+        arr[index] = last;
+        pos[last] = index;
         
-        // Move last element to removed position
-        nums[index] = lastElement;
-        
-        // Update map for last element
-        mp[lastElement] = index;
-        
-        // Remove last element
-        nums.pop_back();
-        
-        // Remove from map
-        mp.erase(val);
+        // remove last
+        arr.pop_back();
+        pos.erase(val);
         
         return true;
     }
     
     int getRandom() {
-        int randomIndex = rand() % nums.size();
-        return nums[randomIndex];
+        
+        int idx = rand() % arr.size();
+        return arr[idx];
     }
 };
