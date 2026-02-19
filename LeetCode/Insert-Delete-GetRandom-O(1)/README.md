@@ -1,31 +1,179 @@
-# Insert Delete GetRandom O(1)
+# LeetCode 380 – Insert Delete GetRandom O(1)
 
-Can you solve this real interview question? Insert Delete GetRandom O(1) - Implement the RandomizedSet class:
+## Problem in Simple Words
 
- * RandomizedSet() Initializes the RandomizedSet object.
- * bool insert(int val) Inserts an item val into the set if not present. Returns true if the item was not present, false otherwise.
- * bool remove(int val) Removes an item val from the set if present. Returns true if the item was present, false otherwise.
- * int getRandom() Returns a random element from the current set of elements (it's guaranteed that at least one element exists when this method is called). Each element must have the same probability of being returned.
+Design a data structure that supports three operations:
 
-You must implement the functions of the class such that each function works in average O(1) time complexity.
+1. Insert a value  
+2. Remove a value  
+3. Return a random value  
 
- 
+All operations must run in constant time O(1).
 
-Example 1:
+Rules:
+
+- No duplicate values allowed  
+- insert() returns true if value was added  
+- remove() returns true if value was removed  
+- getRandom() returns any existing value randomly  
+
+---
+
+## What Makes This Problem Interesting
+
+Normally:
+
+- Array gives fast random access
+- HashMap gives fast search
+
+But neither alone can do everything in O(1).
+
+So the trick is:
+
+Use both together.
+
+---
+
+## Core Idea
+
+We use:
+
+- A vector to store values  
+- An unordered_map to store value → index  
+
+Why?
+
+The vector helps with:
+
+- Fast random selection  
+
+The hashmap helps with:
+
+- Fast checking if a value exists  
+- Fast finding the index of a value  
+- Fast removal  
+
+Both are necessary.
+
+---
+
+## Why Store Values in BOTH Structures?
+
+Every value must be inserted into:
+
+- The vector  
+- The hashmap  
+
+Because:
+
+Vector stores the actual data.
+
+Hashmap stores where that data is located inside the vector.
+
+If we only use vector:
+
+Removing an element from the middle becomes slow.
+
+If we only use hashmap:
+
+Getting a random element becomes slow.
+
+So both work together.
+
+---
+
+## How Insert Works
+
+When inserting a value:
+
+1. Check if it already exists using hashmap  
+2. If it exists → return false  
+3. If not →  
+   - Push it to the end of vector  
+   - Store its index in hashmap  
+
+This keeps insert operation O(1).
+
+---
+
+## How Remove Works (Important Trick)
+
+Removing from middle of vector is slow.
+
+So instead:
+
+1. Find index of value using hashmap  
+2. Take last element from vector  
+3. Move last element to the removed element’s position  
+4. Update hashmap for moved element  
+5. Remove last element from vector  
+6. Erase value from hashmap  
+
+This avoids shifting elements.
+
+Still O(1).
+
+---
+
+## How getRandom Works
+
+Since everything is stored in vector:
+
+1. Generate random index  
+2. Return value at that index  
+
+Direct access → O(1)
+
+---
+
+## Example
+
+Start empty.
+
+Insert(10)
+
+Vector: [10]  
+Map: {10: 0}
+
+Insert(20)
+
+Vector: [10, 20]  
+Map: {10: 0, 20: 1}
+
+Insert(30)
+
+Vector: [10, 20, 30]  
+Map: {10: 0, 20: 1, 30: 2}
+
+Remove(20)
+
+- Index of 20 = 1  
+- Last element = 30  
+- Move 30 to index 1  
+
+Vector becomes: [10, 30]  
+Map becomes: {10: 0, 30: 1}
+
+Done.
+
+---
+
+## Real-Life System Examples
+
+### 1. Cache Systems
+
+Data is inserted, removed, and sometimes randomly selected.
+Performance must be constant time.
+
+### 2. Gaming Servers
+
+Active players are stored.
+Players join and leave.
+Random player selection may be needed.
+
+### 3. Load Testing Systems
+
+Active sessions are tracked.
+Random sampling is used for monitoring.
 
 
-Input
-["RandomizedSet", "insert", "remove", "insert", "getRandom", "remove", "insert", "getRandom"]
-[[], [1], [2], [2], [], [1], [2], []]
-Output
-[null, true, false, true, 2, true, false, 2]
-
-Explanation
-RandomizedSet randomizedSet = new RandomizedSet();
-randomizedSet.insert(1); // Inserts 1 to the set. Returns true as 1 was inserted successfully.
-randomizedSet.remove(2); // Returns false as 2 does not exist in the set.
-randomizedSet.insert(2); // Inserts 2 to the set, returns true. Set now contains [1,2].
-randomizedSet.getRandom(); // getRandom() should return either 1 or 2 randomly.
-randomizedSet.remove(1); // Removes 1 from the set, returns true. Set now contains [2].
-randomizedSet.insert(2); // 2 was already in the set, so return false.
-randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom() will always return 2.
