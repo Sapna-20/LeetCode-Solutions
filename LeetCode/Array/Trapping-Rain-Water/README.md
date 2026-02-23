@@ -74,9 +74,4 @@ The smallest bandwidth decides how much data can be stored safely.
 In distributed systems, overall throughput is limited by the weakest server.
 The smallest capacity node controls the system performance.
 
-3. Memory Management
-
-Operating systems manage queues between producers and consumers.
-If one side is slow, memory fills up until the limit is reached.
-
 ---
