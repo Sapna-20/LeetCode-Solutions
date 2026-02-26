@@ -1,44 +1,141 @@
-# Substring with Concatenation of All Words
+LeetCode 30 – Substring with Concatenation of All Words
+## Problem Statement
 
-Can you solve this real interview question? Substring with Concatenation of All Words - You are given a string s and an array of strings words. All the strings of words are of the same length.
+We are given:
 
-A concatenated string is a string that exactly contains all the strings of any permutation of words concatenated.
+One big string
 
- * For example, if words = ["ab","cd","ef"], then "abcdef", "abefcd", "cdabef", "cdefab", "efabcd", and "efcdab" are all concatenated strings. "acdbef" is not a concatenated string because it is not the concatenation of any permutation of words.
+One list of words
 
-Return an array of the starting indices of all the concatenated substrings in s. You can return the answer in any order.
+All words are of the same length.
 
- 
+We need to find all starting indexes in the big string
+where all those words appear together, continuously,
+without any extra character in between.
 
-Example 1:
+Order of words does not matter.
+But all words must be used exactly once.
 
-Input: s = "barfoothefoobarman", words = ["foo","bar"]
+Example
 
-Output: [0,9]
+String:
 
-Explanation:
+barfoothefoobarman
 
-The substring starting at 0 is "barfoo". It is the concatenation of ["bar","foo"] which is a permutation of words.
-The substring starting at 9 is "foobar". It is the concatenation of ["foo","bar"] which is a permutation of words.
+Words:
 
-Example 2:
+foo, bar
 
-Input: s = "wordgoodgoodgoodbestword", words = ["word","good","best","word"]
+Each word length = 3
+Total size needed = 3 × 2 = 6
 
-Output: []
+So we check substrings of size 6.
 
-Explanation:
+Valid ones are:
 
-There is no concatenated substring.
+barfoo
+foobar
 
-Example 3:
+So answer is:
 
-Input: s = "barfoofoobarthefoobarman", words = ["bar","foo","the"]
+0, 9
 
-Output: [6,9,12]
+## What I Understood From This Problem
 
-Explanation:
+The important thing is:
 
-The substring starting at 6 is "foobarthe". It is the concatenation of ["foo","bar","the"].
-The substring starting at 9 is "barthefoo". It is the concatenation of ["bar","the","foo"].
-The substring starting at 12 is "thefoobar". It is the concatenation of ["the","foo","bar"].
+All words are same length.
+
+So instead of checking random substrings,
+we only check substrings of fixed size.
+
+That fixed size is:
+
+word length × number of words
+
+That makes this problem easier.
+
+How I Think About Solving It
+Step 1
+
+First, I store how many times each word appears.
+
+For example:
+
+If words = ["foo", "bar", "foo"]
+
+Then I store:
+
+foo → 2
+bar → 1
+
+This helps me know the exact frequency needed.
+
+Step 2
+
+Now I move through the string.
+
+At each index, I take a substring of total required length.
+
+Then I break that substring into small parts of word length.
+
+Then I count those words.
+
+If the count matches the original frequency map,
+then I add that index to the answer.
+
+What This Problem Is Actually Testing
+
+This problem is testing:
+
+Can I detect a fixed pattern inside a big string?
+
+Can I use a hashmap properly?
+
+Can I use sliding window idea?
+
+Can I avoid unnecessary repeated work?
+
+If I try all combinations blindly, it will be slow.
+
+So sliding window helps reduce repeated checking.
+
+## Real Life Understanding 
+
+Imagine a system log like this:
+
+loginlogoutloginpaycart
+
+And I want to detect where:
+
+login + cart + pay
+
+happened together.
+
+Instead of checking every possible combination,
+I move a fixed window and check frequency.
+
+That is exactly what this problem is doing.
+
+What I Learned From This Problem
+
+When words have same length, think fixed window
+
+Use hashmap for frequency matching
+
+Sliding window helps optimize
+
+Pattern detection problems are common in backend systems
+
+## Final Summary
+
+We are scanning a big string
+to find exact combination of given words
+with correct frequency
+and no extra characters.
+
+Main trick:
+
+Fix window size and compare frequencies.
+
+That’s it.
