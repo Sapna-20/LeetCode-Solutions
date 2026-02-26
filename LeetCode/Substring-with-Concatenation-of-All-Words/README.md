@@ -44,10 +44,7 @@ So answer is:
 
 The important thing is:
 
-All words are same length.
-
-So instead of checking random substrings,
-we only check substrings of fixed size.
+All words are same length. So instead of checking random substrings, we only check substrings of fixed size.
 
 That fixed size is:
 
@@ -75,11 +72,7 @@ Step 2
 
 Now I move through the string.
 
-At each index, I take a substring of total required length.
-
-Then I break that substring into small parts of word length.
-
-Then I count those words.
+At each index, I take a substring of total required length. Then I break that substring into small parts of word length. Then I count those words.
 
 If the count matches the original frequency map,
 then I add that index to the answer.
