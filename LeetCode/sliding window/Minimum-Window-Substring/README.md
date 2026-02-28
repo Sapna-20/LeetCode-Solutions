@@ -1,169 +1,108 @@
 LeetCode 76 – Minimum Window Substring
-## Problem in My Words
+## Problem Statement
 
-We are given two strings.
-
-One big string s
-
-One small string t
-
-The task is to find the smallest substring of s that contains all characters of t.
-
-Important points:
-
-Every character in t must appear in the substring.
-
-Frequency also matters.
-
-Order does not matter.
-
-If no such substring exists, we return an empty string.
+We are given two strings s and t. The goal is to find the smallest substring in s that contains all characters of t. Every character from t must appear in the substring and the frequency also matters. The order of characters does not matter. If no such substring exists, we return an empty string.
 
 Example
+s = "ADOBECODEBANC"
+t = "ABC"
 
-String s:
-
-ADOBECODEBANC
-
-String t:
-
-ABC
-
-Possible substrings that contain A, B, C:
+Valid substrings containing A, B, C:
 
 ADOBEC
 DOBECODEBA
 BANC
 
-But the smallest one is:
+The smallest substring is:
 
 BANC
 
-So the answer is:
+So the output is:
 
-BANC
+"BANC"
+## Key Observation
 
-## What I Understood From This Problem
+Important things to notice:
 
-The main idea of the problem is:
+We are not asked to find any substring.
 
-We must find the minimum length substring that contains all required characters.
+We must find the minimum length substring.
 
-Checking every possible substring would be very slow.
+Characters from t must appear with correct frequency.
 
-So instead we use the sliding window technique.
+Trying all substrings would be very slow, so a better approach is needed.
 
-This means we maintain a window inside the string and keep adjusting its size.
+## Idea to Solve
+
+The best approach is Sliding Window + Character Frequency Tracking.
 
 Two pointers are used:
 
-left → start of the window
-right → end of the window
+left  -> start of window
+right -> end of window
 
-We expand the window and shrink it whenever possible.
+The window keeps expanding and shrinking while scanning the string.
 
-How I Think About Solving It
-Step 1
+Approach
 
-First, I store the frequency of characters from string t.
+Step 1 – Store frequency of characters in t.
 
 Example:
 
-If
-
 t = "AABC"
 
-Then required frequency becomes:
+Frequency needed:
+A -> 2
+B -> 1
+C -> 1
 
-A → 2
-B → 1
-C → 1
+Step 2 – Move the right pointer across string s and include characters into the window.
 
-This tells us how many times each character must appear.
+Step 3 – When the window contains all required characters, the window becomes valid.
 
-Step 2
+Step 4 – Now try to shrink the window from the left to remove unnecessary characters.
 
-Now I move the right pointer across the string s.
+Step 5 – Keep updating the minimum window length whenever a valid window is found.
 
-As I include characters in the window, I decrease their required frequency.
+## This problem mainly tests:
 
-When all required characters are included,
-it means the window is valid.
+Sliding Window technique
 
-Step 3
+Two pointer approach
 
-Now I try to shrink the window from the left side.
+Character frequency tracking
 
-Because the goal is to find the minimum size window.
+Optimizing brute force substring search
 
-If removing a character breaks the requirement,
-then I stop shrinking and move the right pointer again.
+Without sliding window, the brute force solution would be very slow.
 
-Step 4
+### Real Life Tech Usage
 
-Every time we get a valid window,
-we compare its size with the previous minimum.
+This concept appears in many real systems.
 
-If it is smaller,
-we update our answer.
+## Search Engines
+When users search multiple keywords, the search system may find the smallest part of a document containing all those keywords so it can highlight the most relevant snippet.
 
-What This Problem Is Actually Testing
+## Log Monitoring Systems
+In production systems, engineers may need to detect the smallest log segment containing events like ERROR, TIMEOUT, and DATABASE_FAIL.
 
-This problem mainly tests:
+## Text Processing / NLP
+Some systems try to find the smallest sentence or paragraph containing multiple required keywords for summarization or document analysis.
 
-Understanding of sliding window technique
+## Complexity:
 
-Handling character frequency using array or hashmap
+### Time Complexity
 
-Knowing when to expand the window and when to shrink it
+O(n)
 
-Optimizing brute force solutions.
+Each character is visited at most twice by the sliding window.
 
-If we check every substring,
-the time complexity would be very large.
+### Space Complexity
 
-Sliding window helps reduce it to linear time.
+O(1)
 
-## Real Life Understanding (Simple Version)
+Only a fixed size character frequency array is used.
 
-Imagine a log file like this:
+### Final Summary
 
-A D O B E C O D E B A N C
-
-And suppose we are monitoring events and we need to detect when these three events happened:
-
-A
-B
-C
-
-We want to find the smallest time window in which all three events occurred.
-
-Instead of checking the whole log repeatedly,
-we move a window through the log
-and adjust its size.
-
-That is exactly what this problem is doing.
-
-What I Learned From This Problem
-
-Sliding window is very useful for substring problems.
-
-Always track character frequency when conditions depend on counts.
-
-Two pointer technique can reduce time complexity a lot.
-
-Minimum / maximum substring problems often use sliding window.
-
-## Final Summary
-
-We scan the big string using a window.
-
-The window expands until all required characters appear.
-
-Then we shrink it to make it as small as possible.
-
-The smallest valid window found during this process is the answer.
-
-Main idea:
-
-Use sliding window + frequency counting to find the minimum valid substring.
+The problem asks for the smallest substring containing all required characters. Instead of checking every substring, we use a sliding window with two pointers. The window expands to include required characters and shrinks to remove unnecessary ones. During this process we keep track of the smallest valid window and return it as the answer.
