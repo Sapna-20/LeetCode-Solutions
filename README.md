@@ -65,7 +65,3 @@ I try to understand every problem before moving to the next one.
 
 ------------------------------------------------------------
 
-## Author
-
-Sapna Baranwal  
-C++ | DSA | Interview Preparation
