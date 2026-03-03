@@ -3,7 +3,7 @@ Problem Statement (In Simple Words)
 
 An array ratings is given.
 
-Each index represents a child.
+Each index represents a child.  
 
 The value at that index represents the rating of that child.
 
