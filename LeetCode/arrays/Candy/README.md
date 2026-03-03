@@ -3,7 +3,7 @@ Problem Statement
 
 An array ratings is given.
 
-Each index represents a child.  
+Each index represents a child.
 
 The value at that index represents the rating of that child.
 
@@ -15,68 +15,66 @@ Every child must receive at least 1 candy.
 
 If a child has a higher rating than their immediate neighbor (left or right), then that child must receive more candies than that neighbor.
 
-The objective is to return the minimum total number of candies required to satisfy both rules.
+The goal is to return the minimum total number of candies required to satisfy both rules.
 
-Only the total number is required, not the actual candy distribution.
+Only the total number is required, not the distribution itself.
 
-2. Approach and Thinking Process
-2.1 Base Initialization
+Approach
+Step 1: Initialize
 
-Since every child must receive at least one candy,
-initialize a candies array where every element is set to 1.
+Since every child must get at least one candy,
+create a candies array and initialize all values to 1.
 
-This guarantees the first rule is satisfied.
+This ensures the first rule is satisfied.
 
-2.2 Left to Right Traversal
+Step 2: Left to Right Pass
 
-To satisfy the left neighbor condition:
+Traverse from left to right.
 
-If
+If:
 
 ratings[i] > ratings[i - 1]
 
-Then
+Then:
 
 candies[i] = candies[i - 1] + 1
 
-This step ensures that whenever ratings increase from left to right,
-the candy count also increases accordingly.
+This handles increasing sequences and satisfies the left neighbor condition.
 
-2.3 Right to Left Traversal
+Step 3: Right to Left Pass
 
-Now the right neighbor condition must be handled.
+Traverse from right to left.
 
-If
+If:
 
 ratings[i] > ratings[i + 1]
 
-Then
+Then:
 
 candies[i] = max(candies[i], candies[i + 1] + 1)
 
-The max() function is used to prevent overwriting a valid value assigned during the first pass.
+The max() ensures that the previous valid assignment from the first pass is not overwritten incorrectly.
 
-2.4 Final Calculation
+Step 4: Final Calculation
 
-After both passes are completed,
-sum all values in the candies array and return the total.
+Sum all values in the candies array and return the result.
 
-3. Complexity Analysis
+Complexity
 
 Time Complexity: O(n)
 
 Space Complexity: O(n)
 
-4. Practical Relevance in Tech Systems
+Where This Logic Appears in Real Systems
 
-Although this exact problem may not directly appear in production code,
-the underlying pattern is used in systems involving constrained allocation.
+This exact problem may not appear directly in production code,
+but the pattern of minimum allocation with ordering constraints is common.
 
-4.1 Rank-Based Increment Systems
+1. Rank-Based Increment Systems
 
-In internal HR or evaluation platforms:
+In internal HR tools:
 
-Employees are ranked based on performance scores.
+Employees are ranked based on performance.
 
 Everyone receives a base increment.
 
@@ -84,24 +82,19 @@ A higher-ranked employee must not receive less increment than a lower-ranked adj
 
 The total increment budget must be controlled.
 
-This creates a minimum allocation problem with ordering constraints.
+This creates a constrained allocation problem similar in structure.
 
-4.2 Priority-Based Resource Allocation
+2. Priority-Based Resource Allocation
 
-In backend services:
+In backend systems:
 
-Tasks are assigned priority scores.
+Tasks or services are sorted by priority.
 
-Each task must receive a minimum amount of resources.
+Each task must receive at least a minimum resource allocation.
 
 Higher-priority tasks must receive more resources than lower-priority neighboring tasks.
 
-Total resource allocation must be optimized.
+Total resource usage must be optimized.
 
-<<<<<<< HEAD
-The same principle applies:
+The core idea remains the same:
 minimum base allocation + relative ordering constraint + cost optimization.
-=======
-The core idea is the same: satisfy local constraints while minimizing total allocation.
-
->>>>>>> 17f8a60bc02ba7faf12daa9c251d81c6c6e527c6
