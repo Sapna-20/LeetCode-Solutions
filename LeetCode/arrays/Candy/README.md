@@ -1,5 +1,5 @@
 LeetCode 135 – Candy
-1. Problem Statement
+Problem Statement
 
 An array ratings is given.
 
