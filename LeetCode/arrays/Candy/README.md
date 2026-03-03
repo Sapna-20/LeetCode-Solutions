@@ -1,5 +1,6 @@
 LeetCode 135 – Candy
-Problem Statement (In Simple Words)
+
+1. Problem Statement
 
 An array ratings is given.
 
@@ -9,26 +10,27 @@ The value at that index represents the rating of that child.
 
 All children are standing in a straight line.
 
-Candies must be distributed following two rules:
+Candies must be distributed according to the following rules:
 
 Every child must receive at least 1 candy.
 
 If a child has a higher rating than their immediate neighbor (left or right), then that child must receive more candies than that neighbor.
 
-The task is to return the minimum total number of candies required to satisfy both rules.
+The objective is to return the minimum total number of candies required to satisfy both rules.
 
-Only the total count is required, not the actual distribution.
+Only the total number is required, not the actual candy distribution.
 
-Thinking Process
-Step 1: Base Initialization
+2. Approach and Thinking Process
+2.1 Base Initialization
 
 Since every child must receive at least one candy,
-initialize a candies array with value 1 for all children.
+initialize a candies array where every element is set to 1.
 
-Step 2: Left to Right Pass
+This guarantees the first rule is satisfied.
 
-If ratings are increasing from left to right,
-candies must also increase.
+2.2 Left to Right Traversal
+
+To satisfy the left neighbor condition:
 
 If
 
@@ -38,9 +40,10 @@ Then
 
 candies[i] = candies[i - 1] + 1
 
-This ensures the left neighbor condition is satisfied.
+This step ensures that whenever ratings increase from left to right,
+the candy count also increases accordingly.
 
-Step 3: Right to Left Pass
+2.3 Right to Left Traversal
 
 Now the right neighbor condition must be handled.
 
@@ -52,25 +55,29 @@ Then
 
 candies[i] = max(candies[i], candies[i + 1] + 1)
 
-The max() is used so that the value assigned in the first pass is not broken.
+The max() function is used to prevent overwriting a valid value assigned during the first pass.
 
-Step 4: Final Calculation
+2.4 Final Calculation
 
-Sum all values in the candies array and return the result.
+After both passes are completed,
+sum all values in the candies array and return the total.
+
+3. Complexity Analysis
 
 Time Complexity: O(n)
+
 Space Complexity: O(n)
 
-Where This Type of Logic Appears in Tech
+4. Practical Relevance in Tech Systems
 
-This exact problem may not directly appear in production systems,
-but the underlying pattern is common.
+Although this exact problem may not directly appear in production code,
+the underlying pattern is used in systems involving constrained allocation.
 
-1. Rank-Based Increment Systems
+4.1 Rank-Based Increment Systems
 
-In some internal company tools, employees are ranked after performance evaluations.
+In internal HR or evaluation platforms:
 
-Constraints can be:
+Employees are ranked based on performance scores.
 
 Everyone receives a base increment.
 
@@ -78,16 +85,24 @@ A higher-ranked employee must not receive less increment than a lower-ranked adj
 
 The total increment budget must be controlled.
 
-This creates a minimum allocation problem with relative ordering constraints.
+This creates a minimum allocation problem with ordering constraints.
 
-2. Priority-Based Resource Allocation
+4.2 Priority-Based Resource Allocation
 
-In backend systems, tasks or services are assigned priority scores.
+In backend services:
 
-Each task must receive at least a minimum resource allocation.
+Tasks are assigned priority scores.
+
+Each task must receive a minimum amount of resources.
 
 Higher-priority tasks must receive more resources than lower-priority neighboring tasks.
 
 Total resource allocation must be optimized.
 
+<<<<<<< HEAD
+The same principle applies:
+minimum base allocation + relative ordering constraint + cost optimization.
+=======
 The core idea is the same: satisfy local constraints while minimizing total allocation.
+
+>>>>>>> 17f8a60bc02ba7faf12daa9c251d81c6c6e527c6
