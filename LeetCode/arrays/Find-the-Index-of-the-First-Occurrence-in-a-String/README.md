@@ -239,14 +239,3 @@ A signature is basically a specific pattern of bytes inside a file.
 
 Efficient pattern matching algorithms help detect these patterns quickly.
 
-
-
-### DNA Sequence Search
-
-In bioinformatics, scientists search DNA patterns inside extremely long DNA sequences.
-
-Example pattern:
-
-ACTGATCG
-
-Pattern matching algorithms help locate these sequences efficiently in genomic data.
