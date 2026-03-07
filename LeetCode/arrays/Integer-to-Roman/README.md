@@ -1,58 +1,136 @@
-# Integer to Roman
-
-Can you solve this real interview question? Integer to Roman - Seven different symbols represent Roman numerals with the following values:
-
-Symbol Value I 1 V 5 X 10 L 50 C 100 D 500 M 1000
-
-Roman numerals are formed by appending the conversions of decimal place values from highest to lowest. Converting a decimal place value into a Roman numeral has the following rules:
-
- * If the value does not start with 4 or 9, select the symbol of the maximal value that can be subtracted from the input, append that symbol to the result, subtract its value, and convert the remainder to a Roman numeral.
- * If the value starts with 4 or 9 use the subtractive form representing one symbol subtracted from the following symbol, for example, 4 is 1 (I) less than 5 (V): IV and 9 is 1 (I) less than 10 (X): IX. Only the following subtractive forms are used: 4 (IV), 9 (IX), 40 (XL), 90 (XC), 400 (CD) and 900 (CM).
- * Only powers of 10 (I, X, C, M) can be appended consecutively at most 3 times to represent multiples of 10. You cannot append 5 (V), 50 (L), or 500 (D) multiple times. If you need to append a symbol 4 times use the subtractive form.
-
-Given an integer, convert it to a Roman numeral.
-
- 
-
-Example 1:
-
-Input: num = 3749
-
-Output: "MMMDCCXLIX"
-
-Explanation:
+# LeetCode 12 — Integer to Roman
 
 
-3000 = MMM as 1000 (M) + 1000 (M) + 1000 (M)
- 700 = DCC as 500 (D) + 100 (C) + 100 (C)
-  40 = XL as 10 (X) less of 50 (L)
-   9 = IX as 1 (I) less of 10 (X)
-Note: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal places
+## Problem Statement
+
+In this problem, an integer number is given and the task is to convert that number into a Roman numeral.
+
+Roman numerals use a fixed set of symbols.
+
+I   = 1  
+V   = 5  
+X   = 10  
+L   = 50  
+C   = 100  
+D   = 500  
+M   = 1000  
+
+For example:
+
+3 becomes III  
+58 becomes LVIII  
+1994 becomes MCMXCIV  
+
+Roman numerals also follow some subtraction rules. Instead of writing four same symbols, a smaller symbol is placed before a larger one.
+
+4   becomes IV  
+9   becomes IX  
+40  becomes XL  
+90  becomes XC  
+400 becomes CD  
+900 becomes CM  
+
+So the problem simply asks to convert a normal integer (between 1 and 3999) into its correct Roman numeral form.
 
 
-Example 2:
 
-Input: num = 58
+## Thinking Process
 
-Output: "LVIII"
+One thing to observe in Roman numerals is that the representation always starts from the largest value and then moves towards smaller values.
 
-Explanation:
+Because of this pattern, the number can be broken down using the important Roman values.
+
+1000 → M  
+900  → CM  
+500  → D  
+400  → CD  
+100  → C  
+90   → XC  
+50   → L  
+40   → XL  
+10   → X  
+9    → IX  
+5    → V  
+4    → IV  
+1    → I  
 
 
-50 = L
- 8 = VIII
+The idea is simple.
+
+Start checking from the largest value.
+
+If the number is greater than or equal to that value, that Roman symbol is added and the value is subtracted from the number.
+
+This continues until the number becomes zero.
 
 
-Example 3:
+Example:
 
-Input: num = 1994
+Number = 1994
 
-Output: "MCMXCIV"
+First the largest possible value is used.
 
-Explanation:
+1994 is greater than 1000  
+so M is added.
+
+Remaining number becomes 994.
 
 
-1000 = M
- 900 = CM
-  90 = XC
-   4 = IV
+Next, 994 is greater than 900  
+so CM is added.
+
+Remaining number becomes 94.
+
+
+Next, 94 is greater than 90  
+so XC is added.
+
+Remaining number becomes 4.
+
+
+Finally, 4 corresponds to IV.
+
+
+So the final Roman numeral becomes
+
+MCMXCIV
+
+
+The important observation is that the representation is always built by using the largest possible value first and then moving step by step toward smaller values.
+
+
+
+## Real Engineering Problems Where This Concept Is Used
+
+
+### Cash Denomination Systems
+
+When money is broken into currency notes, the system usually starts with the largest note.
+
+For example, if the amount is 1370, the breakdown becomes
+
+1000  
+200  
+100  
+50  
+20  
+
+This reduces the number of notes and makes the transaction efficient. The idea is similar to choosing the largest Roman value first.
+
+
+
+### Resource Allocation in Systems
+
+In many systems, resources are allocated from the largest available unit and then smaller units are used for the remaining part.
+
+For example, in storage systems or memory allocation, a large block may be assigned first and then smaller blocks are used for the leftover requirement.
+
+
+
+### Video Streaming Quality Selection
+
+In video streaming platforms, the system tries to select the highest possible video quality that the available bandwidth can support.
+
+If the bandwidth cannot support the highest quality, the system moves to the next available level.
+
+This decision process is also similar to selecting the largest possible value first and then moving downward.
