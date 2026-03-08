@@ -1,6 +1,6 @@
 # LeetCode 14 — Longest Common Prefix
 
-## Problem Statement (Layman Technical Language)
+## Problem Statement
 
 We are given a list of strings.
 
