@@ -1,4 +1,4 @@
-# LeetCode 169 – Majority Element (Easy Explanation)
+# LeetCode 169 – Majority Element
 
 ##  Problem in Simple Words
 

@@ -1,4 +1,4 @@
-# LeetCode 88 – Merge Sorted Array (Easy Explanation)
+# LeetCode 88 – Merge Sorted Array
 
 ##  Problem in Simple Words
 
