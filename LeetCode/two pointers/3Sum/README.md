@@ -1,35 +1,64 @@
-# 3Sum
+# LeetCode 15 — 3Sum
 
-Can you solve this real interview question? 3Sum - Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+## 1. Problem Statement
 
-Notice that the solution set must not contain duplicate triplets.
+We are given an integer array `nums`.
 
- 
+We need to find **all unique triplets** such that:
 
-Example 1:
+nums[i] + nums[j] + nums[k] = 0
 
+Conditions:
 
-Input: nums = [-1,0,1,2,-1,-4]
-Output: [[-1,-1,2],[-1,0,1]]
-Explanation: 
-nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
-nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
-nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
-The distinct triplets are [-1,0,1] and [-1,-1,2].
-Notice that the order of the output and the order of the triplets does not matter.
+* All three indices must be different.
+* The result should not contain duplicate triplets.
 
+Example
 
-Example 2:
+Input
+[-1, 0, 1, 2, -1, -4]
 
+Output
 
-Input: nums = [0,1,1]
-Output: []
-Explanation: The only possible triplet does not sum up to 0.
+[-1, -1, 2]
+[-1, 0, 1]
 
+Both triplets give sum = 0.
 
-Example 3:
+---
 
+# 2. Thinking Approach
 
-Input: nums = [0,0,0]
-Output: [[0,0,0]]
-Explanation: The only possible triplet sums up to 0.
+The first idea that comes to mind is to pick **three numbers and check their sum**.
+
+But checking every combination of three numbers is very slow when the array size becomes large.
+
+A better way to think is:
+
+First **sort the array**.
+
+Then pick one number and try to find two other numbers that make the total sum equal to zero.
+
+Since the array is sorted, we can move through the remaining numbers from both ends and adjust depending on whether the sum is too small or too large.
+
+This avoids checking unnecessary combinations and also makes it easier to skip duplicate values.
+
+---
+
+# 3. Where This Idea Appears in Real Systems
+
+The main idea here is **finding combinations of values that satisfy a condition** efficiently.
+
+Some real examples where similar ideas appear:
+
+Financial systems
+Transaction logs are analyzed to detect suspicious combinations of transactions that match fraud patterns.
+
+Log analysis
+Engineers often search large log files for combinations of events that together indicate a failure or anomaly.
+
+Data analytics
+Large datasets sometimes need to be scanned for groups of values that satisfy certain constraints.
+
+Recommendation systems
+Shopping platforms analyze combinations of items purchased together to improve product recommendations.
