@@ -1,34 +1,104 @@
-# Two Sum II - Input Array Is Sorted
+LeetCode 167 – Two Sum II (Input Array Is Sorted)
+1. Problem Statement
 
-Can you solve this real interview question? Two Sum II - Input Array Is Sorted - Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
+given a sorted array of integers (in increasing order) and a number called target.
 
-Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
+task is to find two different elements in the array such that their sum is equal to the target.
 
-The tests are generated such that there is exactly one solution. You may not use the same element twice.
+Return the positions (indices) of these two elements.
 
-Your solution must use only constant extra space.
+Important Points:
 
- 
+The array is already sorted
 
-Example 1:
+There is exactly one solution
 
+We cannot use the same element twice
 
-Input: numbers = [2,7,11,15], target = 9
-Output: [1,2]
-Explanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We return [1, 2].
+Indexing is 1-based (not 0-based)
 
+2. Thinking Process
+Step 1: Brute Force Idea
 
-Example 2:
+Check every pair:
 
+Take one element and try it with all others
 
-Input: numbers = [2,3,4], target = 6
-Output: [1,3]
-Explanation: The sum of 2 and 4 is 6. Therefore index1 = 1, index2 = 3. We return [1, 3].
+Time complexity: O(n²) → not efficient
 
+Step 2: Use Sorted Property
 
-Example 3:
+Since the array is sorted, we can avoid checking all pairs.
 
+Step 3: Two Pointer Approach
 
-Input: numbers = [-1,0], target = -1
-Output: [1,2]
-Explanation: The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2. We return [1, 2].
+Take two pointers:
+
+left → start of array
+
+right → end of array
+
+Step 4: Evaluate Sum
+
+At each step:
+
+sum = numbers[left] + numbers[right]
+Step 5: Move Pointers
+
+If sum == target → return answer
+
+If sum < target → move left++ (need bigger value)
+
+If sum > target → move right-- (need smaller value)
+
+Step 6: Why This Works
+
+Moving left increases sum
+
+Moving right decreases sum
+
+Each step reduces search space
+
+No need to recheck elements
+
+Time Complexity:
+
+O(n)
+
+Space Complexity:
+
+O(1)
+
+3. Real Life Engineering Problem
+Scenario: Log Analysis in Backend Systems
+
+In production systems, logs are often stored in sorted order (by time or value).
+
+Example:
+
+response_times = [100, 200, 300, 700, 800]
+threshold = 1000
+Problem:
+
+Find two API calls whose combined response time equals the threshold.
+
+Approach:
+
+Start from smallest and largest values
+
+Check their sum
+
+Adjust pointers based on result
+
+100 + 800 = 900 → too small → move left
+200 + 800 = 1000 → match found
+Why This Approach is Used:
+
+Logs are already sorted
+
+Data size is large
+
+Need fast and efficient scanning
+
+Avoid nested loops
+
