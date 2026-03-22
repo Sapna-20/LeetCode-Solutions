@@ -2,7 +2,7 @@
 
 ---
 
-## 1. Problem Statement
+1. Problem Statement
 
 We are given two strings: `s` and `t`.
 
@@ -27,7 +27,7 @@ All characters are present in order, so the answer is true.
 
 ---
 
-## 2. Thinking Process
+2. Thinking Process
 
 Simple idea:
 
