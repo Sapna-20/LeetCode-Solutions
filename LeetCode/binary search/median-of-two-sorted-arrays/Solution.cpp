@@ -2,7 +2,7 @@ class Solution {
 public:
     double findMedianSortedArrays(vector<int>& a, vector<int>& b) {
         if(a.size() > b.size()) return findMedianSortedArrays(b, a);
-        int n = a.size(), m = b.size();
+        int n = a.size(), m = b.size(); //
         int l = 0, r = n;
         while(l <= r) {
             int i = (l + r) / 2;
