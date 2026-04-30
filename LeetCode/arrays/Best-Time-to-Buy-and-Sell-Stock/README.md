@@ -105,7 +105,7 @@ They generate reports like:
 
 To do this, software scans data in the same way as this problem.
 
----
+------
 
 ### 3. Investment Advisory Systems
 
