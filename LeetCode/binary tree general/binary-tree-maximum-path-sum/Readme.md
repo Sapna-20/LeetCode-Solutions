@@ -1,12 +1,12 @@
 LeetCode 124 – Binary Tree Maximum Path Sum
 
-## Problem Statement
+### Problem Statement
 
 Given a binary tree where each node contains an integer value (can be positive or negative).
 
 A path is a sequence of nodes connected through parent-child links.
 
-# Rules of the path:
+## Rules of the path:
 
 Path can start from any node
 Path can end at any node
@@ -35,7 +35,7 @@ Best path
 
 15 → 20 → 7
 
-## Thinking Process
+### Thinking Process
 
 First understand what happens at each node.
 
@@ -91,7 +91,7 @@ Space Complexity
 
 O(h)
 
-## Real Engineering Problems 
+### Real Engineering Problems 
 
 1. Circuit Critical Path Analysis
 
